@@ -4,12 +4,16 @@ import br.com.mars.sonda.models.DirecaoCardinal;
 import br.com.mars.sonda.models.Posicao;
 import br.com.mars.sonda.models.Sonda;
 
+import javax.validation.constraints.Min;
+
 public class SondaViewModel {
 
     private  DirecaoCardinal direcaoCardinal;
 
+    @Min(0)
     private int eixoX;
 
+    @Min(0)
     private int eixoY;
 
     public SondaViewModel(DirecaoCardinal direcaoCardinal, int eixoX, int eixoY) {
