@@ -5,7 +5,9 @@ import br.com.mars.sonda.session.ClienteSession;
 import br.com.mars.sonda.viewModel.SondaViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,10 @@ public class SondaController {
     @Autowired
     private ClienteSession clienteSession;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void registra(@RequestBody SondaViewModel sondaViewModel){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> registra(@RequestBody SondaViewModel sondaViewModel){
         Sonda sonda = sondaViewModel.toSonda();
         clienteSession.adiciona(sonda);
+        return ResponseEntity.status(HttpStatus.CREATED).body(sonda);
     }
 }

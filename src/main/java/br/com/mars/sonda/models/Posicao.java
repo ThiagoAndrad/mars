@@ -11,6 +11,14 @@ public class Posicao {
         this.eixoY = eixoY;
     }
 
+    public int getEixoX() {
+        return eixoX;
+    }
+
+    public int getEixoY() {
+        return eixoY;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

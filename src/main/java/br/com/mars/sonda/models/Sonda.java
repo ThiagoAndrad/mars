@@ -12,6 +12,14 @@ public class Sonda {
         this.posicao = posicao;
     }
 
+    public DirecaoCardinal getDirecaoCardinal() {
+        return direcaoCardinal;
+    }
+
+    public Posicao getPosicao() {
+        return posicao;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
