@@ -12,10 +12,14 @@ public class SondaViewModel {
 
     private int eixoY;
 
-    public Sonda toSonda() {
-        Posicao posicao = new Posicao(eixoX, eixoY);
-        return new Sonda(direcaoCardinal, posicao);
+    public SondaViewModel(DirecaoCardinal direcaoCardinal, int eixoX, int eixoY) {
+        this.direcaoCardinal = direcaoCardinal;
+        this.eixoX = eixoX;
+        this.eixoY = eixoY;
     }
+
+    @Deprecated
+    public SondaViewModel() { }
 
     public void setDirecaoCardinal(DirecaoCardinal direcaoCardinal) {
         this.direcaoCardinal = direcaoCardinal;
@@ -27,5 +31,10 @@ public class SondaViewModel {
 
     public void setEixoY(int eixoY) {
         this.eixoY = eixoY;
+    }
+
+    public Sonda toSonda() {
+        Posicao posicao = new Posicao(eixoX, eixoY);
+        return new Sonda(direcaoCardinal, posicao);
     }
 }
