@@ -1,19 +1,39 @@
 package br.com.mars.sonda.viewModel;
 
+import br.com.mars.sonda.models.Posicao;
+
+import java.util.Objects;
+
 public class Planalto {
-    private final int x;
-    private final int y;
 
-    public Planalto(int x, int y) {
-        this.x = x;
-        this.y = y;
+    private final Posicao norteLeste;
+
+    private final Posicao sulOeste = new Posicao(0, 0);
+
+    public Planalto(Posicao norteLeste) {
+        this.norteLeste = norteLeste;
     }
 
-    public int getX() {
-        return x;
+    public Posicao getNorteLeste() {
+        return norteLeste;
     }
 
-    public int getY() {
-        return y;
+    public Posicao getSulOeste() {
+        return sulOeste;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Planalto)) return false;
+        Planalto planalto = (Planalto) o;
+        return Objects.equals(norteLeste, planalto.norteLeste) &&
+                Objects.equals(sulOeste, planalto.sulOeste);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(norteLeste, sulOeste);
     }
 }

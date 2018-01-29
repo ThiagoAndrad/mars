@@ -1,25 +1,28 @@
 package br.com.mars.sonda.viewModel;
 
+import br.com.mars.sonda.models.Posicao;
+
 import javax.validation.constraints.Min;
 
 public class PlanaltoViewModel {
 
     @Min(0)
-    private int x;
+    private int eixoX;
 
     @Min(0)
-    private int y;
+    private int eixoY;
 
-    public void setX(int x) {
-        this.x = x;
+    public void setEixoX(int eixoX) {
+        this.eixoX = eixoX;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setEixoY(int eixoY) {
+        this.eixoY = eixoY;
     }
 
     public Planalto toPlanalto() {
 
-        return new Planalto(x, y);
+        Posicao norteLeste = new Posicao(eixoX, eixoY);
+        return new Planalto(norteLeste);
     }
 }
