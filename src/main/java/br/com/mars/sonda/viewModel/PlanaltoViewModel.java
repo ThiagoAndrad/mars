@@ -12,6 +12,14 @@ public class PlanaltoViewModel {
     @Min(0)
     private int eixoY;
 
+    public PlanaltoViewModel(int eixoX, int eixoY) {
+        this.eixoX = eixoX;
+        this.eixoY = eixoY;
+    }
+
+    @Deprecated
+    public PlanaltoViewModel() { }
+
     public void setEixoX(int eixoX) {
         this.eixoX = eixoX;
     }
