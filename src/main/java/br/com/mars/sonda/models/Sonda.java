@@ -47,4 +47,8 @@ public class Sonda {
     public void virarADireita() {
         direcaoCardinal = direcaoCardinal.getPontoADireita();
     }
+
+    public void virarAEsquerda() {
+        direcaoCardinal = direcaoCardinal.getPontoADEsquerda();
+    }
 }
