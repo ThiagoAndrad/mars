@@ -5,7 +5,7 @@ import br.com.mars.sonda.viewModel.Planalto;
 import java.util.Objects;
 
 public class Sonda {
-    private final DirecaoCardinal direcaoCardinal;
+    private DirecaoCardinal direcaoCardinal;
     private final Posicao posicao;
     private final Planalto planalto;
 
@@ -42,5 +42,9 @@ public class Sonda {
     public int hashCode() {
 
         return Objects.hash(direcaoCardinal, posicao, planalto);
+    }
+
+    public void virarADireita() {
+        direcaoCardinal = direcaoCardinal.getPontoADireita();
     }
 }
