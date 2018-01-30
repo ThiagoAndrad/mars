@@ -39,6 +39,21 @@ public class SondaTest {
 
     @Test
     public void aoVirarAEsquerdaPosicionaASondaConformeARosaDosVentos() {
+        sonda.virarAEsquerda();
+        DirecaoCardinal direcaoCardinal = sonda.getDirecaoCardinal();
+        assertEquals(DirecaoCardinal.W, direcaoCardinal);
+
+        sonda.virarAEsquerda();
+        direcaoCardinal = sonda.getDirecaoCardinal();
+        assertEquals(DirecaoCardinal.S, direcaoCardinal);
+
+        sonda.virarAEsquerda();
+        direcaoCardinal = sonda.getDirecaoCardinal();
+        assertEquals(DirecaoCardinal.E, direcaoCardinal);
+
+        sonda.virarAEsquerda();
+        direcaoCardinal = sonda.getDirecaoCardinal();
+        assertEquals(DirecaoCardinal.N, direcaoCardinal);
 
     }
 }
