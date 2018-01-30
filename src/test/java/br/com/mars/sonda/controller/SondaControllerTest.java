@@ -2,6 +2,7 @@ package br.com.mars.sonda.controller;
 
 import br.com.mars.sonda.models.DirecaoCardinal;
 import br.com.mars.sonda.models.Posicao;
+import br.com.mars.sonda.models.Sonda;
 import br.com.mars.sonda.session.ClienteSession;
 import br.com.mars.sonda.viewModel.Planalto;
 import org.json.JSONObject;
@@ -14,11 +15,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -98,5 +101,23 @@ public class SondaControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void retornaASondaCadastrada() throws Exception {
+
+        Posicao posicao = new Posicao(9,10);
+        Planalto planalto = new Planalto(posicao);
+        given(clienteSession.getSonda()).willReturn(new Sonda(DirecaoCardinal.S, new Posicao(9, 9), planalto));
+
+        mvc.perform(get("/sonda"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.direcaoCardinal", is(DirecaoCardinal.S.toString())))
+                .andExpect(jsonPath("$.posicao.eixoX", is(9)))
+                .andExpect(jsonPath("$.posicao.eixoY", is(9)))
+                .andExpect(jsonPath("$.planalto.norteLeste.eixoX", is(9)))
+                .andExpect(jsonPath("$.planalto.norteLeste.eixoY", is(10)))
+                .andExpect(jsonPath("$.planalto.sulOeste.eixoX", is(0)))
+                .andExpect(jsonPath("$.planalto.sulOeste.eixoY", is(0)));
     }
 }
