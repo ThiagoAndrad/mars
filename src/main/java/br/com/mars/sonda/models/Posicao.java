@@ -33,4 +33,8 @@ public class Posicao {
 
         return Objects.hash(eixoX, eixoY);
     }
+
+    public boolean isMaiorQue(Posicao outraPosicao) {
+        return this.eixoX > outraPosicao.getEixoX() || this.eixoY > outraPosicao.getEixoY();
+    }
 }
