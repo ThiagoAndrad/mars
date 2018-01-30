@@ -56,4 +56,17 @@ public class SondaTest {
         assertEquals(DirecaoCardinal.N, direcaoCardinal);
 
     }
+
+    @Test
+    public void aoMoverUmaSondaViradaAoNorteDeveMoverUmaPosicaoAoNorte() {
+        Posicao posicaoPlanalto = new Posicao(10, 10);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(5, 5);
+        Sonda sondaNorte = new Sonda(DirecaoCardinal.N, posicaoSonda, planalto);
+
+        sondaNorte.mover();
+
+        Posicao posicaoEsperada = new Posicao(5, 6);
+        assertEquals(posicaoEsperada, sondaNorte.getPosicao());
+    }
 }
