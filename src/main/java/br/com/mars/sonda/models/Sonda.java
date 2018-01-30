@@ -28,6 +28,14 @@ public class Sonda {
         return planalto;
     }
 
+    public void virarADireita() {
+        direcaoCardinal = direcaoCardinal.getPontoADireita();
+    }
+
+    public void virarAEsquerda() {
+        direcaoCardinal = direcaoCardinal.getPontoAEsquerda();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,11 +52,5 @@ public class Sonda {
         return Objects.hash(direcaoCardinal, posicao, planalto);
     }
 
-    public void virarADireita() {
-        direcaoCardinal = direcaoCardinal.getPontoADireita();
-    }
 
-    public void virarAEsquerda() {
-        direcaoCardinal = direcaoCardinal.getPontoADEsquerda();
-    }
 }

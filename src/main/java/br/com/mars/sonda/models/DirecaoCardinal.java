@@ -8,7 +8,7 @@ public enum DirecaoCardinal {
         }
 
         @Override
-        public DirecaoCardinal getPontoADEsquerda() {
+        public DirecaoCardinal getPontoAEsquerda() {
             return W;
         }
     },
@@ -19,7 +19,7 @@ public enum DirecaoCardinal {
         }
 
         @Override
-        public DirecaoCardinal getPontoADEsquerda() {
+        public DirecaoCardinal getPontoAEsquerda() {
             return N;
         }
     },
@@ -30,7 +30,7 @@ public enum DirecaoCardinal {
         }
 
         @Override
-        public DirecaoCardinal getPontoADEsquerda() {
+        public DirecaoCardinal getPontoAEsquerda() {
             return E;
         }
     },
@@ -41,12 +41,12 @@ public enum DirecaoCardinal {
         }
 
         @Override
-        public DirecaoCardinal getPontoADEsquerda() {
+        public DirecaoCardinal getPontoAEsquerda() {
             return S;
         }
     };
 
     public abstract DirecaoCardinal getPontoADireita();
 
-    public abstract DirecaoCardinal getPontoADEsquerda();
+    public abstract DirecaoCardinal getPontoAEsquerda();
 }
