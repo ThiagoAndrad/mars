@@ -2,22 +2,21 @@ package br.com.mars.sonda.viewModel;
 
 import br.com.mars.sonda.models.DirecaoCardinal;
 import br.com.mars.sonda.models.Posicao;
-import br.com.mars.sonda.models.Sonda;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class SondaViewModelTest {
 
     @Test
-    public void deveInstanciarUmSondaComADirecaoECoordenadas() {
-        DirecaoCardinal norte = DirecaoCardinal.N;
+    public void deveRetornarUmaPosicaoBaseadoNasCoordenadas() {
         int eixoX = 10;
         int eixoY = 10;
-        SondaViewModel sondaViewModel = new SondaViewModel(norte, eixoX, eixoY);
-        Sonda sondaEsperada = new Sonda(norte, new Posicao(eixoX, eixoY));
+        SondaViewModel sondaViewModel = new SondaViewModel(DirecaoCardinal.N, eixoX, eixoY);
+        Posicao posicaoEsperada = new Posicao(eixoX, eixoY);
 
-        Sonda sonda = sondaViewModel.toSonda();
+        Posicao posicao = sondaViewModel.getPosicao();
 
-        Assert.assertEquals(sondaEsperada, sonda);
+        assertEquals(posicaoEsperada, posicao);
     }
 }
