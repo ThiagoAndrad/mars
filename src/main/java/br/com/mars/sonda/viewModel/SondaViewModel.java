@@ -37,8 +37,12 @@ public class SondaViewModel {
         this.eixoY = eixoY;
     }
 
-    public Sonda toSonda() {
-        Posicao posicao = new Posicao(eixoX, eixoY);
-        return new Sonda(direcaoCardinal, posicao);
+    public DirecaoCardinal getDirecaoCardinal() {
+        return direcaoCardinal;
     }
+
+    public Posicao getPosicao(){
+        return new Posicao(eixoX, eixoY);
+    }
+
 }

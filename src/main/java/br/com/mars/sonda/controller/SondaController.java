@@ -1,11 +1,9 @@
 package br.com.mars.sonda.controller;
 
-import br.com.mars.sonda.models.Sonda;
-import br.com.mars.sonda.session.ClienteSession;
+import br.com.mars.sonda.service.SondaService;
 import br.com.mars.sonda.viewModel.SondaViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -23,15 +21,14 @@ import javax.validation.Valid;
 public class SondaController {
 
     @Autowired
-    private ClienteSession clienteSession;
+    private SondaService sondaService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registra(@RequestBody @Valid SondaViewModel sondaViewModel, BindingResult bindingResult){
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
+        }
 
-        Sonda sonda = sondaViewModel.toSonda();
-        clienteSession.adiciona(sonda);
-        return ResponseEntity.status(HttpStatus.CREATED).body(sonda);
+        return sondaService.registra(sondaViewModel);
     }
 }

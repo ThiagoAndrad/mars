@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Optional;
+
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION)
 public class ClienteSession {
@@ -20,5 +22,9 @@ public class ClienteSession {
 
     public void adiciona(Planalto planalto) {
         this.planalto = planalto;
+    }
+
+    public Optional<Planalto> getPlanalto() {
+        return Optional.ofNullable(planalto);
     }
 }
