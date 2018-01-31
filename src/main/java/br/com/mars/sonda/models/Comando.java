@@ -1,17 +1,24 @@
 package br.com.mars.sonda.models;
 
 public enum Comando {
-    L(new Esquerda()),
-    R(new Direita()),
-    M(new Movimento());
+    L {
+        @Override
+        public void executa(Sonda sonda) {
+            sonda.virarAEsquerda();
+        }
+    },
+    R {
+        @Override
+        public void executa(Sonda sonda) {
+            sonda.virarADireita();
+        }
+    },
+    M {
+        @Override
+        public void executa(Sonda sonda) {
+            sonda.mover();
+        }
+    };
 
-    private Movimentavel movimentavel;
-
-    Comando(Movimentavel movimentavel) {
-        this.movimentavel = movimentavel;
-    }
-
-    public Movimentavel getMovimentavel() {
-        return movimentavel;
-    }
+    public abstract void executa(Sonda sonda);
 }
