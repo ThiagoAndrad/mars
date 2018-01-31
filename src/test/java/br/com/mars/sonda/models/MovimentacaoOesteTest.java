@@ -15,7 +15,7 @@ public class MovimentacaoOesteTest {
     }
 
     @Test
-    public void deveRetornarNovaPosicaoComUmaPosicaoAMaisNaDirecaoNorte() {
+    public void deveRetornarNovaPosicaoComUmaPosicaoAMaisNaDirecaoOeste() {
         Posicao posicao = new Posicao(10, 10);
         Posicao posicaoEsperada = new Posicao(9, 10);
         Posicao novaPosicao = movimentacaoOeste.mover(posicao);
