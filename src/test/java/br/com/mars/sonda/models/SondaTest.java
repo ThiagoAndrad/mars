@@ -5,12 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 
-import static br.com.mars.sonda.models.Comando.L;
-import static br.com.mars.sonda.models.Comando.M;
-import static br.com.mars.sonda.models.Comando.R;
+import static br.com.mars.sonda.models.Comando.*;
 import static org.junit.Assert.assertEquals;
 
 public class SondaTest {
