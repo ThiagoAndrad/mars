@@ -1,5 +1,6 @@
 package br.com.mars.sonda.service;
 
+import br.com.mars.sonda.models.Comando;
 import br.com.mars.sonda.models.Sonda;
 import br.com.mars.sonda.session.ClienteSession;
 import br.com.mars.sonda.viewModel.Planalto;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,5 +38,15 @@ public class SondaService {
 
     private Sonda getSonda(SondaViewModel sondaViewModel, Planalto planalto) {
         return new Sonda(sondaViewModel.getDirecaoCardinal(), sondaViewModel.getPosicao(), planalto);
+    }
+
+    public ResponseEntity<?> movimenta(List<Comando> comandos) {
+        Optional<Sonda> possivelSonda = clienteSession.getSonda();
+        if (possivelSonda.isPresent()) {
+            Sonda sonda = possivelSonda.get();
+            sonda.mover(comandos);
+            return ResponseEntity.ok(sonda);
+        }
+        return ResponseEntity.noContent().build();
     }
 }

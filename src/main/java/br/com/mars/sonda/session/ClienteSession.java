@@ -28,7 +28,7 @@ public class ClienteSession {
         return Optional.ofNullable(planalto);
     }
 
-    public Sonda getSonda() {
-        return sonda;
+    public Optional<Sonda> getSonda() {
+        return Optional.ofNullable(sonda);
     }
 }
