@@ -108,7 +108,8 @@ public class SondaControllerTest {
 
         Posicao posicao = new Posicao(9,10);
         Planalto planalto = new Planalto(posicao);
-        given(clienteSession.getSonda()).willReturn(new Sonda(DirecaoCardinal.S, new Posicao(9, 9), planalto));
+        Sonda sonda = new Sonda(DirecaoCardinal.S, new Posicao(9, 9), planalto);
+        given(clienteSession.getSonda()).willReturn(Optional.ofNullable(sonda));
 
         mvc.perform(get("/sonda"))
                 .andExpect(status().isOk())
