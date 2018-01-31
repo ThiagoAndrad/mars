@@ -69,4 +69,43 @@ public class SondaTest {
         Posicao posicaoEsperada = new Posicao(5, 6);
         assertEquals(posicaoEsperada, sondaNorte.getPosicao());
     }
+
+    @Test
+    public void aoMoverUmaSondaViradaAoLesteDeveMoverUmaPosicaoAoLeste() {
+        Posicao posicaoPlanalto = new Posicao(10, 10);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(5, 5);
+        Sonda sondaLeste = new Sonda(DirecaoCardinal.E, posicaoSonda, planalto);
+
+        sondaLeste.mover();
+
+        Posicao posicaoEsperada = new Posicao(6, 5);
+        assertEquals(posicaoEsperada, sondaLeste.getPosicao());
+    }
+
+    @Test
+    public void aoMoverUmaSondaViradaAoSulDeveMoverUmaPosicaoAoSul() {
+        Posicao posicaoPlanalto = new Posicao(10, 10);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(5, 5);
+        Sonda sondaSul = new Sonda(DirecaoCardinal.S, posicaoSonda, planalto);
+
+        sondaSul.mover();
+
+        Posicao posicaoEsperada = new Posicao(5, 4);
+        assertEquals(posicaoEsperada, sondaSul.getPosicao());
+    }
+
+    @Test
+    public void aoMoverUmaSondaViradaAoOesteDeveMoverUmaPosicaoAoOeste() {
+        Posicao posicaoPlanalto = new Posicao(10, 10);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(5, 5);
+        Sonda sondaOeste = new Sonda(DirecaoCardinal.W, posicaoSonda, planalto);
+
+        sondaOeste.mover();
+
+        Posicao posicaoEsperada = new Posicao(4, 5);
+        assertEquals(posicaoEsperada, sondaOeste.getPosicao());
+    }
 }

@@ -1,7 +1,7 @@
 package br.com.mars.sonda.models;
 
 public enum DirecaoCardinal {
-    N {
+    N(new MovimentacaoNorte()) {
         @Override
         public DirecaoCardinal getPontoADireita() {
             return E;
@@ -12,7 +12,7 @@ public enum DirecaoCardinal {
             return W;
         }
     },
-    E {
+    E(new MovimentacaoLeste()) {
         @Override
         public DirecaoCardinal getPontoADireita() {
             return S;
@@ -23,7 +23,7 @@ public enum DirecaoCardinal {
             return N;
         }
     },
-    S {
+    S(new MovimentacaoSul()) {
         @Override
         public DirecaoCardinal getPontoADireita() {
             return W;
@@ -34,7 +34,7 @@ public enum DirecaoCardinal {
             return E;
         }
     },
-    W {
+    W(new MovimentacaoOeste()) {
         @Override
         public DirecaoCardinal getPontoADireita() {
             return N;
@@ -46,7 +46,17 @@ public enum DirecaoCardinal {
         }
     };
 
+    private final  RegraDeMovimentacao regraDeMovimentacao;
+
+    DirecaoCardinal(RegraDeMovimentacao regraDeMovimentacao){
+        this.regraDeMovimentacao = regraDeMovimentacao;
+    }
+
     public abstract DirecaoCardinal getPontoADireita();
 
     public abstract DirecaoCardinal getPontoAEsquerda();
+
+    public RegraDeMovimentacao getRegraDeMovimentacao() {
+        return this.regraDeMovimentacao;
+    }
 }

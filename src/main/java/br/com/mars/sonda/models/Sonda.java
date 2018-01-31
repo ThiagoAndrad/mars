@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Sonda {
     private DirecaoCardinal direcaoCardinal;
-    private final Posicao posicao;
+    private Posicao posicao;
     private final Planalto planalto;
 
     public Sonda(DirecaoCardinal direcaoCardinal, Posicao posicao, Planalto planalto) {
@@ -36,6 +36,11 @@ public class Sonda {
         direcaoCardinal = direcaoCardinal.getPontoAEsquerda();
     }
 
+    public void mover() {
+        RegraDeMovimentacao regraDeMovimentacao = direcaoCardinal.getRegraDeMovimentacao();
+        this.posicao = regraDeMovimentacao.mover(posicao);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,6 +56,5 @@ public class Sonda {
 
         return Objects.hash(direcaoCardinal, posicao, planalto);
     }
-
 
 }
