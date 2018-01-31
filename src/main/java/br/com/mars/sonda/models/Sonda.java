@@ -2,6 +2,7 @@ package br.com.mars.sonda.models;
 
 import br.com.mars.sonda.viewModel.Planalto;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Sonda {
@@ -41,6 +42,10 @@ public class Sonda {
         this.posicao = regraDeMovimentacao.mover(posicao);
     }
 
+    public void mover(List<Comando> comandos) {
+        comandos.forEach(c -> c.executa(this));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,5 +61,4 @@ public class Sonda {
 
         return Objects.hash(direcaoCardinal, posicao, planalto);
     }
-
 }

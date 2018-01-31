@@ -4,6 +4,13 @@ import br.com.mars.sonda.viewModel.Planalto;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+
+import static br.com.mars.sonda.models.Comando.L;
+import static br.com.mars.sonda.models.Comando.M;
+import static br.com.mars.sonda.models.Comando.R;
 import static org.junit.Assert.assertEquals;
 
 public class SondaTest {
@@ -107,5 +114,39 @@ public class SondaTest {
 
         Posicao posicaoEsperada = new Posicao(4, 5);
         assertEquals(posicaoEsperada, sondaOeste.getPosicao());
+    }
+
+    @Test
+    public void aoReceberUmaListaDeComandosAEsquerdaEMoverMovimentaASondaParaPosicao() {
+        Posicao posicaoPlanalto = new Posicao(5, 5);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(1, 2);
+
+        Sonda sonda = new Sonda(DirecaoCardinal.N, posicaoSonda, planalto);
+        List<Comando> comandos = Arrays.asList(L, M, L, M, L, M, L, M, M);
+
+        sonda.mover(comandos);
+
+        Posicao posicaoEsperada = new Posicao(1, 3);
+        Sonda sondaEsperada = new Sonda(DirecaoCardinal.N, posicaoEsperada, planalto);
+
+        assertEquals(sondaEsperada, sonda);
+    }
+
+    @Test
+    public void aoReceberUmaListaDeComandosADireitaEMoverMovimentaASondaParaPosicao() {
+        Posicao posicaoPlanalto = new Posicao(5, 5);
+        Planalto planalto = new Planalto(posicaoPlanalto);
+        Posicao posicaoSonda = new Posicao(3, 3);
+
+        Sonda sonda = new Sonda(DirecaoCardinal.E, posicaoSonda, planalto);
+        List<Comando> comandos = Arrays.asList(M, M, R, M, M, R, M, R, R, M);
+
+        sonda.mover(comandos);
+
+        Posicao posicaoEsperada = new Posicao(5, 1);
+        Sonda sondaEsperada = new Sonda(DirecaoCardinal.E, posicaoEsperada, planalto);
+
+        assertEquals(sondaEsperada, sonda);
     }
 }
