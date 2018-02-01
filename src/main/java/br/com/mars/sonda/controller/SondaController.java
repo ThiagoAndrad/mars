@@ -1,6 +1,6 @@
 package br.com.mars.sonda.controller;
 
-import br.com.mars.sonda.models.Comando;
+import br.com.mars.sonda.models.ComandosViewModel;
 import br.com.mars.sonda.models.Sonda;
 import br.com.mars.sonda.service.SondaService;
 import br.com.mars.sonda.session.ClienteSession;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -35,9 +34,9 @@ public class SondaController {
         clienteSession = clienteSessio;
     }
 
-    @InitBinder
+    @InitBinder("sondaViewModel")
     protected void initBinder(WebDataBinder binder){
-        binder.addValidators(sondaViewModelValidator);
+        binder.setValidator(sondaViewModelValidator);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,8 +52,11 @@ public class SondaController {
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> movimenta(@RequestBody List<Comando> comandos){
-        return sondaService.movimenta(comandos);
+    public ResponseEntity<?> movimenta(@RequestBody @Valid ComandosViewModel comandosViewModel, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().build();
+        }
+        return sondaService.movimenta(comandosViewModel.getComandos());
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
