@@ -30,7 +30,7 @@ public class SondaService {
         if (possivelPlanalto.isPresent()) {
             Sonda sonda = getSonda(sondaViewModel, possivelPlanalto.get());
             clienteSession.adiciona(sonda);
-            return ResponseEntity.status(HttpStatus.CREATED).body(sonda);
+            return ResponseEntity.accepted().body(sonda);
         }
 
         return ResponseEntity.badRequest().build();
@@ -45,8 +45,8 @@ public class SondaService {
         if (possivelSonda.isPresent()) {
             Sonda sonda = possivelSonda.get();
             sonda.mover(comandos);
-            return ResponseEntity.ok(sonda);
+            return ResponseEntity.accepted().body(sonda);
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.badRequest().build();
     }
 }

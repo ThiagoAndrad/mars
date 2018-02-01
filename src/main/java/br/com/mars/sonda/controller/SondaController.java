@@ -51,7 +51,7 @@ public class SondaController {
         return sondaService.registra(sondaViewModel);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> movimenta(@RequestBody @Valid ComandosViewModel comandosViewModel, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();

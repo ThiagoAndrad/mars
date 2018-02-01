@@ -38,7 +38,7 @@ public class PlanaltoControllerTest {
         mvc.perform(post("/planalto")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
-                .andExpect(status().isCreated())
+                .andExpect(status().isAccepted())
                 .andExpect(jsonPath("$.norteLeste.eixoX", is(eixoX)))
                 .andExpect(jsonPath("$.norteLeste.eixoY", is(eixoY)))
                 .andExpect(jsonPath("$.sulOeste.eixoX", is(0)))

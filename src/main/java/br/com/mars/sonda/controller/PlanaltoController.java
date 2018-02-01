@@ -32,6 +32,6 @@ public class PlanaltoController {
 
         Planalto planalto = planaltoViewModel.toPlanalto();
         clienteSession.adiciona(planalto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(planalto);
+        return ResponseEntity.accepted().body(planalto);
     }
 }

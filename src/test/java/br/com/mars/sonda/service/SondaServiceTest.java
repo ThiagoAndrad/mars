@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.mockito.Matchers.any;
@@ -22,6 +23,8 @@ public class SondaServiceTest {
 
     private @Mock ClienteSession clienteSession;
 
+    private @Mock Sonda sonda;
+
     @Test
     public void deveAdicionarSondaCasoExistaUmPlanaltoCadastrado() {
         SondaService sondaService = new SondaService(clienteSession);
@@ -32,5 +35,15 @@ public class SondaServiceTest {
         sondaService.registra(sondaViewModel);
         verify(clienteSession).adiciona(any(Sonda.class));
 
+    }
+
+    @Test
+    public void deveInvocarMetodoParaMovimentarSonda() {
+        SondaService sondaService = new SondaService(clienteSession);
+        Posicao posicao = new Posicao(10, 10);
+
+        when(clienteSession.getSonda()).thenReturn(Optional.of(sonda));
+        sondaService.movimenta(new ArrayList<>());
+        verify(sonda).mover(any(ArrayList.class));
     }
 }
